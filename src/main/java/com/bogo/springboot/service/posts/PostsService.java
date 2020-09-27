@@ -2,6 +2,7 @@ package com.bogo.springboot.service.posts;
 
 import com.bogo.springboot.domain.posts.Posts;
 import com.bogo.springboot.domain.posts.PostsRepository;
+import com.bogo.springboot.web.dto.PostsResponseDto;
 import com.bogo.springboot.web.dto.PostsSaveRequestDto;
 
 import com.bogo.springboot.web.dto.PostsUpdateRequestDto;
@@ -28,6 +29,13 @@ public class PostsService {
         posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
+    }
+
+    public PostsResponseDto findById(Long id) {
+        Posts entity = postsRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id"+ id));
+
+        return new PostsResponseDto(entity);
     }
 
 }
