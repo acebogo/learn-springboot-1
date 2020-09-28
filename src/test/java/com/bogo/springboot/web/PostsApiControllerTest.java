@@ -38,7 +38,7 @@ public class PostsApiControllerTest {
         postsRepository.deleteAll();
     }
 
-//    @Test
+    @Test
     public void Posts_등록된다() throws Exception {
         //given
         String title = "title";
